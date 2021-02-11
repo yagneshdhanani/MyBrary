@@ -1,6 +1,6 @@
 <h2>All Author</h2>
 
-<form action="/authors" method="GET">
+<form action="/authors" method="GET" style="margin-bottom: 10px;">
 
     <label for="name">Name</label>
     <input type="text" name="name" value="<%- searchOption%>">
@@ -10,6 +10,9 @@
 <% authors.forEach(author=> { %>
     <div>
         <%= author.name %>
+            <a href="/authors/<%= author.id %> ">View</a>
+            <a href="/authors/<%= author.id %>/edit ">Edit</a>
+            <%- include("../partials/deleteForm.ejs", {url: `/authors/${author.id}`}) %>
     </div>
     <br>
     <% }); %>
