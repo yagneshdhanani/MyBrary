@@ -68,13 +68,14 @@ router.put("/:id", async (req, res) => {
   try {
     author = await Author.findById(req.params.id);
     author.name = req.body.name;
-    await author.save();
+    const ans = await author.save();
+    console.log(ans);
     res.redirect(`/authors/${req.params.id}`);
   } catch (error) {
     if (author == null) {
       res.redirect("/");
     } else {
-      res.redirect("/authors/new", {
+      res.render("authors/edit", {
         author: author,
         errorMessage: "Error while updating author",
       });
