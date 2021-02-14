@@ -32,3 +32,7 @@ body {
 .error-message {
   color: hsl(var(--color-danger-hue), 100%, 50%);
 }
+
+.form {
+  margin-bottom: 1.5rem;
+}
