@@ -1,38 +1,45 @@
-<div>
-    <label for="title">Title</label>
-    <input type="text" name="title" value="<%= book.title %>" />
+<div class="form-row">
+
+    <div class="form-item">
+        <label for="title">Title</label>
+        <input type="text" name="title" value="<%= book.title %>" />
+    </div>
+
+    <div class="form-item">
+        <label for="author">Author</label>
+        <select name="author">
+            <% authors.forEach(author=> { %>
+                <% if (author.id==book.author) { %>
+                    <option selected label="<%= author.name %>" value="<%= author.id%>"></option>
+                    <% } else {%>
+                        <option label="<%= author.name %>" value="<%= author.id%>"></option>
+                        <% } %>
+                            <% }) %>
+        </select>
+    </div>
 </div>
 
-<div>
-    <label for="author">Author</label>
-    <select name="author">
-        <% authors.forEach(author=> { %>
-            <% if (author.id==book.author) { %>
-                <option selected label="<%= author.name %>" value="<%= author.id%>"></option>
-                <% } else {%>
-                    <option label="<%= author.name %>" value="<%= author.id%>"></option>
-                    <% } %>
-                        <% }) %>
-    </select>
+<div class="form-row">
+    <div class="form-item">
+        <label for="publishDate">Publish Date</label>
+        <input value="<%= book.publishDate == null ? "" : book.publishDate.toISOString().split(" T")[0] %>" type="date"
+        name="publishDate" />
+    </div>
+
+    <div class="form-item">
+        <label for="page-count">Page Count</label>
+        <input type="number" name="pageCount" min="1" value="<%= book.pageCount %>" />
+    </div>
 </div>
 
-<div>
-    <label for="publishDate">Publish Date</label>
-    <input value="<%= book.publishDate == null ? "" : book.publishDate.toISOString().split("T")[0] %>" type="date"
-    name="publishDate" />
-</div>
+<div class="form-row">
+    <div class="form-item form-item-no-grow">
+        <label for="cover">Cover</label>
+        <input type="file" name="cover" class="book-cover filepond" />
+    </div>
 
-<div>
-    <label for="page-count">Page Count</label>
-    <input type="number" name="pageCount" min="1" value="<%= book.pageCount %>" />
-</div>
-
-<div>
-    <label for="cover">Cover</label>
-    <input type="file" name="cover" class="filepond" />
-</div>
-
-<div>
-    <label for="description">Description</label>
-    <textarea name="description" id=""><%= book.description %> </textarea>
+    <div class="form-item">
+        <label for="description">Description</label>
+        <textarea name="description" id=""><%= book.description %> </textarea>
+    </div>
 </div>

@@ -69,7 +69,6 @@ router.put("/:id", async (req, res) => {
     author = await Author.findById(req.params.id);
     author.name = req.body.name;
     const ans = await author.save();
-    console.log(ans);
     res.redirect(`/authors/${req.params.id}`);
   } catch (error) {
     if (author == null) {
